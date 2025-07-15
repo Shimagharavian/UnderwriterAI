@@ -1,5 +1,15 @@
 import { type NextRequest, NextResponse } from "next/server"
 
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
+  // your logic here
+  return new Response(JSON.stringify({ id }));
+}
+
+/*
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   // Mock submission data
   const submission = {
@@ -34,6 +44,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
   return NextResponse.json({ submission })
 }
+*/
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const body = await request.json()
