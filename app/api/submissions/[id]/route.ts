@@ -2,18 +2,12 @@ import { type NextRequest, NextResponse } from "next/server"
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  const { id } = params;
-  // your logic here
-  return new Response(JSON.stringify({ id }));
-}
+  const { id } = context.params
 
-/*
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  // Mock submission data
   const submission = {
-    id: params.id,
+    id,
     applicantName: "John Smith",
     dateOfBirth: "1985-03-15",
     occupation: "Software Engineer",
@@ -44,14 +38,16 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
   return NextResponse.json({ submission })
 }
-*/
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
-  const body = await request.json()
+export async function PUT(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
+  const { id } = context.params
+  const body = await req.json()
 
-  // Mock updating submission
   const updatedSubmission = {
-    id: params.id,
+    id,
     ...body,
     updatedAt: new Date().toISOString(),
   }
